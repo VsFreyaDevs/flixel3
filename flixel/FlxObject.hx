@@ -805,8 +805,8 @@ class FlxObject extends FlxBasic
 	{
 		velocity = FlxPoint.get();
 		acceleration = FlxPoint.get();
-		function setDrag(p:FlxPoint) dragMode = BILINEAR(p.x, p.y);
-		function setMaxSpeed(p:FlxPoint) maxSpeedMode = BILINEAR(p.x, p.y);
+		function setDrag(p:FlxPoint) dragMode = XY(p.x, p.y);
+		function setMaxSpeed(p:FlxPoint) maxSpeedMode = XY(p.x, p.y);
 		drag = new FlxCallbackPoint(setDrag, setDrag, setDrag);
 		maxVelocity = new FlxCallbackPoint(setMaxSpeed, setMaxSpeed, setMaxSpeed);
 	}
@@ -1514,7 +1514,7 @@ enum FlxMovementType
 	LINEAR(value:Float);
 	
 	/** Along two independant axes */
-	BILINEAR(x:Float, y:Float);
+	XY(x:Float, y:Float);
 	
 	NONE;
 }
