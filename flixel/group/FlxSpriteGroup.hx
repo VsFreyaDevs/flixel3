@@ -574,10 +574,10 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 			if (sprite != null)
 				sprite.reset(sprite.x + X - x, sprite.y + Y - y);
 		}
-		
+
 		// prevent any transformations on children, mainly from setter overrides
 		_skipTransformChildren = true;
-		
+
 		// recreate super.reset() but call super.revive instead of revive
 		touching = NONE;
 		wasTouching = NONE;
@@ -586,7 +586,7 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 		// last.set(x, y); // null on sprite groups
 		velocity.set();
 		super.revive();
-		
+
 		_skipTransformChildren = false;
 	}
 
@@ -823,21 +823,21 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 	{
 		if (length == 0)
 			return 0;
-		
+
 		return findMaxXHelper() - findMinXHelper();
 	}
 
 	/**
 	 * Returns the left-most position of the left-most member.
 	 * If there are no members, x is returned.
-	 * 
+	 *
 	 * @since 5.0.0
 	 */
 	public function findMinX()
 	{
 		return length == 0 ? x : findMinXHelper();
 	}
-	
+
 	function findMinXHelper()
 	{
 		var value = Math.POSITIVE_INFINITY;
@@ -845,30 +845,30 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 		{
 			if (member == null)
 				continue;
-			
+
 			var minX:Float;
 			if (member.flixelType == SPRITEGROUP)
 				minX = (cast member:FlxSpriteGroup).findMinX();
 			else
 				minX = member.x;
-			
+
 			if (minX < value)
 				value = minX;
 		}
 		return value;
 	}
-	
+
 	/**
 	 * Returns the right-most position of the right-most member.
 	 * If there are no members, x is returned.
-	 * 
+	 *
 	 * @since 5.0.0
 	 */
 	public function findMaxX()
 	{
 		return length == 0 ? x : findMaxXHelper();
 	}
-	
+
 	function findMaxXHelper()
 	{
 		var value = Math.NEGATIVE_INFINITY;
@@ -876,19 +876,19 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 		{
 			if (member == null)
 				continue;
-			
+
 			var maxX:Float;
 			if (member.flixelType == SPRITEGROUP)
 				maxX = (cast member:FlxSpriteGroup).findMaxX();
 			else
 				maxX = member.x + member.width;
-			
+
 			if (maxX > value)
 				value = maxX;
 		}
 		return value;
 	}
-	
+
 	/**
 	 * This functionality isn't supported in SpriteGroup
 	 */
@@ -901,21 +901,21 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 	{
 		if (length == 0)
 			return 0;
-		
+
 		return findMaxYHelper() - findMinYHelper();
 	}
-	
+
 	/**
 	 * Returns the top-most position of the top-most member.
 	 * If there are no members, y is returned.
-	 * 
+	 *
 	 * @since 5.0.0
 	 */
 	public function findMinY()
 	{
 		return length == 0 ? y : findMinYHelper();
 	}
-	
+
 	function findMinYHelper()
 	{
 		var value = Math.POSITIVE_INFINITY;
@@ -923,30 +923,30 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 		{
 			if (member == null)
 				continue;
-			
+
 			var minY:Float;
 			if (member.flixelType == SPRITEGROUP)
 				minY = (cast member:FlxSpriteGroup).findMinY();
 			else
 				minY = member.y;
-			
+
 			if (minY < value)
 				value = minY;
 		}
 		return value;
 	}
-	
+
 	/**
 	 * Returns the top-most position of the top-most member.
 	 * If there are no members, y is returned.
-	 * 
+	 *
 	 * @since 5.0.0
 	 */
 	public function findMaxY()
 	{
 		return length == 0 ? y : findMaxYHelper();
 	}
-	
+
 	function findMaxYHelper()
 	{
 		var value = Math.NEGATIVE_INFINITY;
@@ -954,13 +954,13 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 		{
 			if (member == null)
 				continue;
-			
+
 			var maxY:Float;
 			if (member.flixelType == SPRITEGROUP)
 				maxY = (cast member:FlxSpriteGroup).findMaxY();
 			else
 				maxY = member.y + member.height;
-			
+
 			if (maxY > value)
 				value = maxY;
 		}
@@ -971,21 +971,25 @@ class FlxTypedSpriteGroup<T:FlxSprite> extends FlxSprite
 
 	inline function get_length():Int
 	{
+		if (group == null) return 0;
 		return group.length;
 	}
 
 	inline function get_maxSize():Int
 	{
+		if (group == null) return 0;
 		return group.maxSize;
 	}
 
 	inline function set_maxSize(Size:Int):Int
 	{
+		if (group == null) return 0;
 		return group.maxSize = Size;
 	}
 
 	inline function get_members():Array<T>
 	{
+		if (group == null) return [];
 		return group.members;
 	}
 
