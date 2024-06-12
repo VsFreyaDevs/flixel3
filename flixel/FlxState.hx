@@ -15,7 +15,7 @@ import flixel.util.typeLimit.NextState;
 @:autoBuild(flixel.system.macros.FlxMacroUtil.deprecateOverride("switchTo", "switchTo is deprecated, use startOutro"))
 #end
 // show deprecation warning when `switchTo` is overriden in dereived classes
-class FlxState extends FlxContainer
+class FlxState extends FlxGroup
 {
 	/**
 	 * Determines whether the current state is updated, even when it is not the active state.
