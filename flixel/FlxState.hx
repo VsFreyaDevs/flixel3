@@ -1,6 +1,6 @@
 package flixel;
 
-import flixel.group.FlxContainer;
+import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxSignal;
